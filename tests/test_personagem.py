@@ -21,3 +21,7 @@ def test_personagem_morre():
 def test_guerreiro_ataca():
     # TODO
     pass
+
+def test_inimigo_ataca():
+    # TODO
+    pass
