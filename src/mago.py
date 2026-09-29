@@ -13,14 +13,19 @@ class Mago(Personagem):
         self.mana = 100
 
     def atacar(self, alvo):
-        # TODO: implementar ataque normal
-        pass
+        print(f"{self.nome} está atacando {alvo.nome} com um golpe normal!")
+        alvo.receber_dano(self.ataque)
+        
 
     def usar_magia(self, alvo):
-        # TODO: implementar magia
+        if self.mana >= 20:
+            print(f"{self.nome} está atacando {alvo.nome} com magia!")
+            alvo.receber_dano(self.ataque * 1.5)   #Magia causa 1.5 do ataque normal
+            self.mana -= 20
+        else:
+            print(f"{self.nome} não possui mana suficiente para usar magia.")
+    
 
-        if self.mana <= 0:
-            print("O mago não possui mana suficiente.")
-            return
+        
 
-        pass
+       
