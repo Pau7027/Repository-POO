@@ -8,6 +8,7 @@ class Personagem(ABC):
         self.vida = vida
         self.ataque = ataque
         self.defesa = defesa
+        self.vida_max = vida
 
     def esta_vivo(self):
         return self.vida > 0
