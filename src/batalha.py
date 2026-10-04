@@ -41,7 +41,7 @@ class Batalha:
                 print("Opção inválida.")
                 continue
 
-            # TODO: inimigo deve atacar depois do jogador
+            self.turno_inimigo()
 
         # TODO: verificar quem venceu
 
@@ -77,3 +77,8 @@ class Batalha:
         item = self.jogador.inventario.pop(numero - 1)  # Remove o item (consumível)
         item.usar(self.jogador)
         return True
+    
+    def turno_inimigo(self):
+        if self.inimigo.esta_vivo():
+            print("\n--- TURNO DO INIMIGO ---")
+            self.inimigo.atacar(self.jogador)
