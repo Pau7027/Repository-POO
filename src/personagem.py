@@ -9,6 +9,11 @@ class Personagem(ABC):
         self.ataque = ataque
         self.defesa = defesa
         self.vida_max = vida
+        self.inventario = []
+        
+    def adicionar_item(self, item):
+        self.inventario.append(item)
+        print(f"{item} adicionado ao inventário de {self.nome}.")
 
     def esta_vivo(self):
         return self.vida > 0

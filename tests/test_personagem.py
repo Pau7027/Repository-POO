@@ -1,6 +1,7 @@
 from src.guerreiro import Guerreiro
 from src.mago import Mago
 from src.inimigo import Inimigo
+from src.item import Pocao_de_vida
 
 def test_guerreiro_esta_vivo():
 
@@ -35,3 +36,20 @@ def teste_receber_dano_com_limite_minimo():
     guerreiro = Guerreiro("Arthur")
     guerreiro.receber_dano(10)  # Dano menor que a defesa
     assert guerreiro.vida == 119  # Vida deve diminuir apenas em 1
+
+
+def test_pocao_de_vida():
+    guerreiro = Guerreiro("Arthur")
+    pocao = Pocao_de_vida("Poção de Vida", 20,30)
+    guerreiro.vida = 50
+    guerreiro.adicionar_item(pocao)
+    
+    pocao.usar(guerreiro)
+    assert guerreiro.vida == 80  
+
+def test_pocao_nao_passa_da_vida_maxima():
+    guerreiro = Guerreiro("Arthur")
+    guerreiro.vida = 110
+    pocao = Pocao_de_vida("Poção de Vida", 20,30)
+    pocao.usar(guerreiro)
+    assert guerreiro.vida == 120  # Vida não deve passar de 120
