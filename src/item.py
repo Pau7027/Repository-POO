@@ -16,5 +16,5 @@ class Pocao_de_vida(Item):
 
     def usar(self, personagem):
         vida_recuperada = min(self.cura, personagem.vida_max - personagem.vida)
-        personagem.vida = vida_recuperada
+        personagem.vida += vida_recuperada
         print(f"{personagem.nome} usou {self.nome} e recuperou {vida_recuperada} de vida. Vida atual: {personagem.vida})")
