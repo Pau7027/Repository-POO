@@ -1,3 +1,6 @@
+from numpy import rint
+
+
 class Batalha:
 
     def __init__(self, jogador, inimigo):
@@ -41,9 +44,9 @@ class Batalha:
                 print("Opção inválida.")
                 continue
 
-            self.turno_inimigo()
+            self.turno_inimigo() #Inimigo ataca jogador
 
-        # TODO: verificar quem venceu
+        self.verificar_vencedor() #Verifica quem venceu a batalha
 
 
     def usar_item(self):
@@ -82,3 +85,11 @@ class Batalha:
         if self.inimigo.esta_vivo():
             print("\n--- TURNO DO INIMIGO ---")
             self.inimigo.atacar(self.jogador)
+            
+    def verificar_vencedor(self):
+        print("\n" + "=" * 40)
+        if self.jogador.esta_vivo():
+            print(f"VITÓRIA! {self.jogador.nome} derrotou {self.inimigo.nome}!")
+        else:
+            print(f"DERROTA... {self.inimigo.nome} venceu {self.jogador.nome}.")
+        print("=" * 40)
