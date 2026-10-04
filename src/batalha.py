@@ -28,7 +28,7 @@ class Batalha:
                 pass
 
             elif opcao == "2":
-                # TODO: implementar item
+                usou_item = usar_item(self)
                 pass
 
             elif opcao == "3":
@@ -42,3 +42,36 @@ class Batalha:
             # TODO: inimigo deve atacar depois do jogador
 
         # TODO: verificar quem venceu
+
+
+    def usar_item(self):
+    ##"""Retorna True se o item foi usado, False se o jogador desistiu."""
+
+        if len(self.jogador.inventario) == 0:
+            print("Você não possui itens.")
+            return False
+
+        print("\n--- INVENTÁRIO ---")
+        for i in range(len(self.jogador.inventario)):
+            item = self.jogador.inventario[i]
+            print(f"{i + 1} - {item.nome}")
+        print("0 - Voltar")
+
+        escolha = input("Escolha um item: ")
+
+        if not escolha.isdigit():
+            print("Opção inválida.")
+            return False
+
+        numero = int(escolha)
+
+        if numero == 0:
+            return False
+
+        if numero < 1 or numero > len(self.jogador.inventario):
+            print("Item inexistente.")
+            return False
+
+        item = self.jogador.inventario.pop(numero - 1)  # Remove o item (consumível)
+        item.usar(self.jogador)
+        return True
