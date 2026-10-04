@@ -28,8 +28,10 @@ class Batalha:
                 pass
 
             elif opcao == "2":
-                usou_item = usar_item(self)
-                pass
+                usou_item = self.usar_item()
+                if usou_item == False:
+                    continue
+                
 
             elif opcao == "3":
                 print("Você fugiu da batalha!")
