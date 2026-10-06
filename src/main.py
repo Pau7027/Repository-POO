@@ -4,12 +4,14 @@ from .batalha import Batalha
 from .item import Pocao_de_vida
 from .orc import Orc
 from .arqueiro import Arqueiro
+from .personagem import escolher_personagem
 
 
 
 def main():
+    jogador = escolher_personagem()
 
-    jogador = Guerreiro("Arthur")
+    
     inimigos = [
         Inimigo("Goblin", 100, 15, 5),
         Orc("Orc")]
