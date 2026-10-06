@@ -2,6 +2,7 @@ from src.guerreiro import Guerreiro
 from src.mago import Mago
 from src.inimigo import Inimigo
 from src.item import Pocao_de_vida
+from src.orc import Orc
 
 def test_guerreiro_esta_vivo():
 
@@ -57,3 +58,15 @@ def test_pocao_nao_passa_da_vida_maxima():
     pocao = Pocao_de_vida("Poção de Vida", 20,30)
     pocao.usar(guerreiro)
     assert guerreiro.vida == 120  # Vida não deve passar de 120
+
+def test_orc():
+    orc = Orc("Grom")
+    guerreiro = Guerreiro("Arthur")
+
+    assert orc.vida == 150
+    assert orc.ataque == 25
+    assert orc.defesa == 10
+
+    orc.atacar(guerreiro)
+
+    assert guerreiro.vida == 110
