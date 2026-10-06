@@ -3,6 +3,7 @@ from src.mago import Mago
 from src.inimigo import Inimigo
 from src.item import Pocao_de_vida
 from src.orc import Orc
+from src.arqueiro import Arqueiro
 
 def test_guerreiro_esta_vivo():
 
@@ -70,3 +71,15 @@ def test_orc():
     orc.atacar(guerreiro)
 
     assert guerreiro.vida == 110
+
+def test_arqueiro():
+    arqueiro = Arqueiro("Legolas")
+    inimigo = Inimigo("Goblin", 100, 15, 5)
+
+    assert arqueiro.vida == 90
+    assert arqueiro.ataque == 25
+    assert arqueiro.defesa == 8
+
+    arqueiro.atacar(inimigo)
+
+    assert inimigo.vida == 80
