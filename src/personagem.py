@@ -1,7 +1,5 @@
 from abc import ABC, abstractmethod
-from .guerreiro import Guerreiro
-from .mago import Mago
-from .arqueiro import Arqueiro
+
 
 class Personagem(ABC):
 
@@ -40,6 +38,9 @@ class Personagem(ABC):
 
 #Função para escolha do personagem
 def escolher_personagem():
+    from .guerreiro import Guerreiro
+    from .mago import Mago
+    from .arqueiro import Arqueiro
     print("="*40)
     print("    ESCOLHA SEU PERSONAGEM:")
     print("1 - Guerreiro (VIDA: 100|ATAQUE: 20|DEFESA: 15)")
