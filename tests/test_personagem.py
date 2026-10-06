@@ -23,8 +23,12 @@ def test_personagem_morre():
 
 
 def test_guerreiro_ataca():
-    # TODO
-    pass
+    guerreiro = Guerreiro("Arthur")
+    inimigo = Inimigo("Goblin", 100, 15, 5)
+
+    guerreiro.atacar(inimigo)
+
+    assert inimigo.vida == 85
 
 def test_inimigo_ataca():
     inimigo = Inimigo("Goblin", 30, 30, 2)
