@@ -27,8 +27,7 @@ class Batalha:
             opcao = input("Escolha uma opção: ")
 
             if opcao == "1":
-                # TODO: jogador ataca inimigo
-                pass
+                self.jogador.atacar(self.inimigo)
 
             elif opcao == "2":
                 usou_item = self.usar_item()
