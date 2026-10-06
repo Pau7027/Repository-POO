@@ -33,3 +33,30 @@ class Personagem(ABC):
             f"Ataque: {self.ataque} | "
             f"Defesa: {self.defesa}"
         )
+
+
+
+#Função para escolha do personagem
+def escolher_personagem():
+    from .guerreiro import Guerreiro
+    from .mago import Mago
+    from .arqueiro import Arqueiro
+    print("="*40)
+    print("    ESCOLHA SEU PERSONAGEM:")
+    print("1 - Guerreiro (VIDA: 100|ATAQUE: 20|DEFESA: 15)")
+    print("2 - Mago  (VIDA: 80|ATAQUE: 30|DEFESA: 5)")
+    print("3 - Arqueiro(VIDA: 90|ATAQUE: 25|DEFESA: 8)")
+    
+    nome = input("\nDigite o nome do seu personagem: ")
+    if nome.strip()=="":
+        nome = "Herói"
+    while True:
+        opcao = input("Escolha uma opção (1, 2 ou 3): ")
+        if opcao == "1":
+            return Guerreiro(nome)
+        elif opcao == "2":
+            return Mago(nome)
+        elif opcao == "3":
+            return Arqueiro(nome)
+        else:
+            print("Opção inválida. Tente novamente.")
