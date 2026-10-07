@@ -33,7 +33,7 @@ class Batalha:
 
             elif opcao == "2":
                 usou_item = self.usar_item()
-                if usou_item == False:
+                if usou_item == False: 
                     continue
                 
 

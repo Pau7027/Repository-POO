@@ -7,8 +7,8 @@ class Item(ABC):
 
     @abstractmethod
     def usar(self, personagem):
-        # TODO: implementar efeito do item
         pass
+
 class Pocao_de_vida(Item):
     def __init__(self, nome, valor, cura):
         super().__init__(nome, valor)
