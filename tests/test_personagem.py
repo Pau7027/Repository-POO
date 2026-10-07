@@ -3,6 +3,7 @@ from src.mago import Mago
 from src.inimigo import Inimigo
 from src.item import Pocao_de_vida
 from src.orc import Orc
+from src.chefe_final import ChefeFinal
 from src.arqueiro import Arqueiro
 
 def test_guerreiro_esta_vivo():
@@ -83,3 +84,15 @@ def test_arqueiro():
     arqueiro.atacar(inimigo)
 
     assert inimigo.vida == 80
+
+def test_chefe_final():
+    chefe = ChefeFinal("Dragão Ancião")
+    guerreiro = Guerreiro("Arthur")
+
+    assert chefe.vida == 250
+    assert chefe.ataque == 35
+    assert chefe.defesa == 15
+
+    chefe.atacar(guerreiro)
+
+    assert guerreiro.vida == 100

@@ -3,8 +3,10 @@ from .inimigo import Inimigo
 from .batalha import Batalha
 from .item import Pocao_de_vida
 from .orc import Orc
+from .chefe_final import ChefeFinal
 from .arqueiro import Arqueiro
 from .personagem import escolher_personagem
+
 
 
 
@@ -13,8 +15,10 @@ def main():
 
     
     inimigos = [
-        Inimigo("Goblin", 100, 15, 5),
-        Orc("Orc")]
+    Inimigo("Goblin", 100, 15, 5),
+    Orc("Orc"),
+    ChefeFinal("Dragão Ancião")
+]
     
     # Itens Iniciais
     jogador.inventario.append(Pocao_de_vida("Poção de Vida", 20, 30))
