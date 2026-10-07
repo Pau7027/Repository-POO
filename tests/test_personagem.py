@@ -1,3 +1,4 @@
+import pytest
 from src.guerreiro import Guerreiro
 from src.mago import Mago
 from src.inimigo import Inimigo
@@ -5,6 +6,7 @@ from src.item import Pocao_de_vida
 from src.orc import Orc
 from src.chefe_final import ChefeFinal
 from src.arqueiro import Arqueiro
+from src.batalha import Batalha
 
 def test_guerreiro_esta_vivo():
 
@@ -96,3 +98,28 @@ def test_chefe_final():
     chefe.atacar(guerreiro)
 
     assert guerreiro.vida == 100
+
+#-----------------Funções auxiliares-------------------------------
+def simular_entradas(monkeypatch,entradas):
+    "Faz o input() retornar os valores da lista de entradas, um por vez."
+    iterador = iter(entradas)
+    monkeypatch.setattr('builtins.input', lambda _: next(iterador))
+
+def criar_batalha():
+    jogador = Guerreiro("Arthur")
+    inimigo = Inimigo("Goblin", 100, 15, 5)
+    return Batalha(jogador,inimigo)
+
+#----------- turno_do_jogador() ----------------
+def test_turno_inimigo_ataca():
+    batalha = criar_batalha()
+    batalha.turno_do_inimigo()
+    #ataque 15 - defesa 15 =0, mas o dano mínimo é 1
+    assert batalha.jogador.vida == 119
+
+def test_turno_inimigo_nao_ataca_se_estiver_morto():
+    batalha = criar_batalha()
+    batalha.inimigo.vida = 0
+    batalha.turno_do_inimigo()
+    
+
