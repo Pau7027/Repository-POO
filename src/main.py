@@ -1,10 +1,8 @@
-from .guerreiro import Guerreiro
 from .inimigo import Inimigo
 from .batalha import Batalha
 from .item import Pocao_de_vida
 from .orc import Orc
 from .chefe_final import ChefeFinal
-from .arqueiro import Arqueiro
 from .personagem import escolher_personagem
 
 
@@ -29,20 +27,18 @@ def main():
         
         batalha = Batalha(jogador, inimigo)
         batalha.iniciar()
+        # O Jogador morreu ou fugiu da batalha
+        if not jogador.esta_vivo() or inimigo.esta_vivo():
+            return
+        # Recompensa por vencer as batalhas( não depois da ultima)
+        if numero < len(inimigos) - 1:
+            jogador.inventario.append(Pocao_de_vida("Poção de Vida", 20, 30))
+            print(f"\n{jogador.nome} recebeu uma Poção de Vida como recompensa!")
 
-    # O Jogador morreu
-    if not jogador.esta_vivo():
-        print("\nVocê perdeu a batalha!")
-        return
+        
     
-    # O Jogador fugiu da batalha
-    if inimigo.esta_vivo():
-        print("\nVocê abandonou a batalha!")
-        return
-    # Recompensa por vencer as batalhas( não depois da ultima)
-    if numero < len(inimigos) - 1:
-        jogador.inventario.append(Pocao_de_vida("Poção de Vida", 20, 30))
-        print(f"\n{jogador.nome} recebeu uma Poção de Vida como recompensa!")
+    
+        
 
     print("\nPARABÉNS! Você venceu todos os inimigos!")
 
