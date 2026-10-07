@@ -22,9 +22,10 @@ class Mago(Personagem):
             print(f"{self.nome} está atacando {alvo.nome} com magia!")
             alvo.receber_dano(self.ataque * 1.5)   #Magia causa 1.5 do ataque normal
             self.mana -= 20
+            return True
         else:
             print(f"{self.nome} não possui mana suficiente para usar magia.")
-    
+            return False
 
         
 

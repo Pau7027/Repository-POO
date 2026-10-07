@@ -23,6 +23,8 @@ class Batalha:
             print("1 - Atacar")
             print("2 - Usar item")
             print("3 - Fugir")
+            if hasattr(self.jogador,"usar_magia"):
+                print("4 - Usar magia")
 
             opcao = input("Escolha uma opção: ")
 
@@ -38,6 +40,11 @@ class Batalha:
             elif opcao == "3":
                 print("Você fugiu da batalha!")
                 return
+            
+            elif opcao == "4" and hasattr(self.jogador,"usar_magia"):
+                usou_magia = self.jogador.usar_magia(self.inimigo)
+                if usou_magia == False:
+                    continue
 
             else:
                 print("Opção inválida.")
