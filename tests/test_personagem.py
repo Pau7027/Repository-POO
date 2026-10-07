@@ -113,13 +113,58 @@ def criar_batalha():
 #----------- turno_do_jogador() ----------------
 def test_turno_inimigo_ataca():
     batalha = criar_batalha()
-    batalha.turno_do_inimigo()
+    batalha.turno_inimigo()
     #ataque 15 - defesa 15 =0, mas o dano mínimo é 1
     assert batalha.jogador.vida == 119
 
 def test_turno_inimigo_nao_ataca_se_estiver_morto():
     batalha = criar_batalha()
     batalha.inimigo.vida = 0
-    batalha.turno_do_inimigo()
+    batalha.turno_inimigo()
+    assert batalha.jogador.vida == 120  # Vida do jogador não deve mudar
+
+
+#----------- verfiicador_vencedor-----------------
+def test_verificar_vencedor_vitoria(capsys):
+    batalha = criar_batalha()
+    batalha.inimigo.vida = 0
+    batalha.verificar_vencedor()
+    saida = capsys.readouterr().out
+    assert "VITÓRIA" in saida
+    assert "Arthur" in saida
+
+def test_verificar_vencedor_derrota(capsys):
+    batalha = criar_batalha()
+    batalha.jogador.vida = 0
+    batalha.verificar_vencedor()
+    saida = capsys.readouterr().out
+    assert "DERROTA" in saida
+    assert "Goblin" in saida
+
+
+
+#--------------- iniciar -----------------
+def test_iniciar_fugir(monkeypatch, capsys):
+    batalha = criar_batalha()
+    simular_entradas(monkeypatch, ["3"])  # Jogador escolhe fugir
+    batalha.iniciar()
+
+    assert "Você fugiu da batalha!" in capsys.readouterr().out
+    assert batalha.jogador.esta_vivo()
+    assert batalha.inimigo.esta_vivo() 
+    assert batalha.jogador.vida == 120  # Vida do jogador não deve mudar
+    assert batalha.inimigo.vida == 100  # Vida do inimigo não deve mudar
+
+def test_iniciar_opcao_invalida_nao_gasta_turno(monkeypatch, capsys):
+    batalha = criar_batalha()
+    simular_entradas(monkeypatch, ["9", "3"])  # Jogador escolhe opção inválida e depois foge
+    batalha.iniciar()
+
+    saida = capsys.readouterr().out
+    assert "Opção inválida." in saida
     
+    assert batalha.jogador.esta_vivo()
+    assert batalha.inimigo.esta_vivo() 
+    assert batalha.jogador.vida == 120  # Vida do jogador não deve mudar
+    assert batalha.inimigo.vida == 100  # Vida do inimigo não deve mudar
 
