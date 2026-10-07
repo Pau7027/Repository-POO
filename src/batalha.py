@@ -99,3 +99,22 @@ class Batalha:
         else:
             print(f"DERROTA... {self.inimigo.nome} venceu {self.jogador.nome}.")
         print("=" * 40)
+        
+        
+       # ---------- Ações sem input(), usadas pelas interfaces gráficas ----------
+    def jogador_atacar(self):
+        """Jogador ataca o inimigo."""
+        self.jogador.atacar(self.inimigo)
+
+    def jogador_usar_item(self, indice):
+        """Remove o item do inventário (consumível) e o usa no jogador."""
+        item = self.jogador.inventario.pop(indice)
+        item.usar(self.jogador)
+
+    def jogador_usar_magia(self):
+        """Retorna True se a magia foi usada, False se faltou mana."""
+        return self.jogador.usar_magia(self.inimigo)
+
+    def terminou(self):
+        """Retorna True se o jogador ou o inimigo morreu."""
+        return not self.jogador.esta_vivo() or not self.inimigo.esta_vivo()
