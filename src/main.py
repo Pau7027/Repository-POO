@@ -21,13 +21,14 @@ def main():
     # Itens Iniciais
     jogador.inventario.append(Pocao_de_vida("Poção de Vida", 20, 30))
     
+    # Loop de Batalhas
     for numero in range(len(inimigos)):
         inimigo = inimigos[numero]
         print(f"\n====BATALHA {numero +1} DE {len(inimigos)}====")
         
         batalha = Batalha(jogador, inimigo)
         batalha.iniciar()
-        # O Jogador morreu ou fugiu da batalha
+        # O Jogador morreu ou fugiu da batalha(Fim)
         if not jogador.esta_vivo() or inimigo.esta_vivo():
             return
         # Recompensa por vencer as batalhas( não depois da ultima)

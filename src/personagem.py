@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 
 
 class Personagem(ABC):
-
+    """Classe base abstrata para todos os personagens do jogo."""
     def __init__(self, nome, vida, ataque, defesa):
         self.nome = nome
         self.vida = vida
@@ -13,7 +13,7 @@ class Personagem(ABC):
         
     def adicionar_item(self, item):
         self.inventario.append(item)
-        print(f"{item} adicionado ao inventário de {self.nome}.")
+        print(f"{item.nome} adicionado ao inventário de {self.nome}.")
 
     def esta_vivo(self):
         return self.vida > 0
@@ -43,7 +43,7 @@ def escolher_personagem():
     from .arqueiro import Arqueiro
     print("="*40)
     print("    ESCOLHA SEU PERSONAGEM:")
-    print("1 - Guerreiro (VIDA: 100|ATAQUE: 20|DEFESA: 15)")
+    print("1 - Guerreiro (VIDA: 120|ATAQUE: 20|DEFESA: 15)")
     print("2 - Mago  (VIDA: 80|ATAQUE: 30|DEFESA: 5)")
     print("3 - Arqueiro(VIDA: 90|ATAQUE: 25|DEFESA: 8)")
     

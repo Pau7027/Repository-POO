@@ -8,6 +8,7 @@ from src.chefe_final import ChefeFinal
 from src.arqueiro import Arqueiro
 from src.batalha import Batalha
 
+#-----------------Testes de Personagem-------------------------------
 def test_guerreiro_esta_vivo():
 
     guerreiro = Guerreiro("Arthur")
@@ -41,12 +42,13 @@ def test_inimigo_ataca():
     inimigo.atacar(guerreiro)
     assert guerreiro.vida == 105 
 
-def teste_receber_dano_com_limite_minimo():
+def test_receber_dano_com_limite_minimo():
     guerreiro = Guerreiro("Arthur")
     guerreiro.receber_dano(10)  # Dano menor que a defesa
     assert guerreiro.vida == 119  # Vida deve diminuir apenas em 1
 
 
+#-----------------Testes de Item-------------------------------
 def test_pocao_de_vida():
     guerreiro = Guerreiro("Arthur")
     pocao = Pocao_de_vida("Poção de Vida", 20,30)
@@ -63,6 +65,7 @@ def test_pocao_nao_passa_da_vida_maxima():
     pocao.usar(guerreiro)
     assert guerreiro.vida == 120  # Vida não deve passar de 120
 
+#-----------------Testes de Personagens Especiais-------------------------------
 def test_orc():
     orc = Orc("Grom")
     guerreiro = Guerreiro("Arthur")
